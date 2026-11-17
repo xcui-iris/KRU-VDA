@@ -17,7 +17,6 @@ the open-ended answers.
 | `mainanalysis.py` | Builds the measures, runs the four validation tests (face, convergent, discriminant, predictive), and produces Tables 1–6, Table A.4 and Figures 2, 4, 5 |
 | `robustness.py` | Appendix and robustness checks: Tables A.1, A.2, A.3, A.5, Figures A.1, A.2, and the robustness results in the text |
 | `data/vda_monthly.csv` | Monthly series used in all four validation tests (see below) |
-| `requirements.txt` | Python packages |
 
 ## Data
 
@@ -42,27 +41,6 @@ The individual survey responses and open-ended answers are not shared. The two s
 - **`mainanalysis.py`** reads `data/vda_monthly.csv` when the raw data are absent. It reproduces every validation table and Figures 2, 4 and 5.
 - **`robustness.py`** rebuilds the sub-measures from the raw data, so it needs them.
 
-To run with the raw data, place the files under `data/raw/`, or point the `KRU_RAW_DATA` environment variable to their folder:
-
-```
-data/raw/
-  historical aeb data - malone.xlsx        individual AEB responses
-  Word Cloud Data/word cloud - YY-MM.xlsx  open-ended answers, one workbook per month
-  equipment_price_index/monthly.csv        FRED A33AVS
-  equipment_price_index/monthly,_end_of_period.csv   FRED U33ATI
-  cot/dea_fut_xls_YYYY/annual.xls          CFTC Legacy COT, futures only
-```
-
-With the raw data present, `mainanalysis.py` rebuilds the measures and rewrites `data/vda_monthly.csv`.
-
-## Running
-
-```
-pip install -r requirements.txt
-python -m nltk.downloader stopwords
-python mainanalysis.py
-python robustness.py
-```
 
 Tables are written to `output/tables/` and figures to `output/figures/`. `mainanalysis.py` takes about 2 minutes with the raw data and seconds without them. `robustness.py` takes about 3 minutes.
 
@@ -85,4 +63,3 @@ Tables are written to `output/tables/` and figures to `output/figures/`. `mainan
 | Figures 2, 4, 5 | `figure2_aeb`, `figure4_vda_aeb`, `figure5_submeasures` |
 | Figures A.1, A.2 | `figureA1_windows`, `figureA2_kl_alternatives` |
 
-Figures 1 and 3 are conceptual diagrams and are not produced by code.
